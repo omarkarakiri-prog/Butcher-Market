@@ -1,0 +1,5 @@
+{
+  "name": "Butcher Market Order System",
+  "description": "An application for customers to place orders and for admins to track and manage them.",
+  "requestFramePermissions": []
+}
