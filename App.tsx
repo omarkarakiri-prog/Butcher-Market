@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import type { Order, OrderItem, Product, PaymentMethod } from './types';
+import type { Order, OrderItem, Product, PaymentMethod, OrderStatus } from './types';
 import OrderForm from './components/OrderForm';
 import OrderTracker from './components/OrderTracker';
 import AdminDashboard from './components/AdminDashboard';
@@ -53,7 +53,21 @@ const initialOrders: Order[] = [
         status: 'Ready',
         date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
         paymentMethod: 'InstaPay',
-    }
+    },
+    {
+        id: 'BM-171699',
+        customerName: 'كريم صلاح',
+        customerPhone: '01122334455',
+        customerAddress: '789 شارع الحرية، الإسكندرية',
+        items: [
+            { productId: 4, name: 'ريب اي ستيك (Rib Eye Steak)', quantity: 0.5, price: 460 },
+            { productId: 18, name: 'كباب حلة صافي (Beef Cubes Premium)', quantity: 1, price: 460 }
+        ],
+        totalAmount: 690,
+        status: 'Preparing',
+        date: new Date().toISOString(),
+        paymentMethod: 'Cash',
+    },
 ];
 
 
@@ -89,6 +103,14 @@ const App: React.FC = () => {
         setCurrentOrder(newOrder);
         setView('customer_tracker');
     };
+    
+    const handleUpdateOrderStatus = (orderId: string, status: OrderStatus) => {
+        setOrders(prevOrders => 
+            prevOrders.map(order => 
+                order.id === orderId ? { ...order, status } : order
+            )
+        );
+    };
 
     const handleCreateNewOrder = () => {
         setCurrentOrder(null);
@@ -119,6 +141,7 @@ const App: React.FC = () => {
                     onAddProduct={handleAddProduct}
                     onUpdateProduct={handleUpdateProduct}
                     onDeleteProduct={handleDeleteProduct}
+                    onUpdateOrderStatus={handleUpdateOrderStatus}
                 />;
             case 'customer_form':
             default:
