@@ -6,27 +6,65 @@ import OrderTracker from './components/OrderTracker';
 import AdminDashboard from './components/AdminDashboard';
 
 const initialProducts: Product[] = [
-    { id: 1, name: 'شورت ريبس (Short Ribs)', price: 400 },
-    { id: 2, name: 'ريش شوي (Beef Ribs)', price: 420 },
-    { id: 3, name: 'سمانة ستيك (Beef Steak)', price: 460 },
-    { id: 4, name: 'ريب اي ستيك (Rib Eye Steak)', price: 460 },
-    { id: 5, name: 'انتركوت ستيك (Strip Loin Steak)', price: 460 },
-    { id: 6, name: 'توماهوك ستيك (Tomahawk Steak)', price: 480 },
-    { id: 7, name: 'عرق فلتو (Fillet Roast)', price: 460 },
-    { id: 8, name: 'عرق روستو (Eye Round Roast)', price: 480 },
-    { id: 9, name: 'عكاوي (Oxtail)', price: 390 },
-    { id: 10, name: 'كباب حلة عادي (Beef Cubes Extra Fat)', price: 400 },
-    { id: 11, name: 'لحم مفروم عادي (Minced Beef - Extra Fat)', price: 400 },
-    { id: 12, name: 'دوش كन्दوز (Beef Breast)', price: 410 },
-    { id: 13, name: 'كباب خضار - سن أو قشرة (Beef Cubes Low Fat)', price: 420 },
-    { id: 14, name: 'شاورما (Shawarma)', price: 430 },
-    { id: 15, name: 'فتيك/بيكاتا (Escalope/Piccata)', price: 500 },
-    { id: 16, name: 'موزة / كولاته كندوز', price: 450 },
-    { id: 17, name: 'لحم مفروم - دهن قليل (Minced Beef - Low Fat)', price: 450 },
-    { id: 18, name: 'كباب حلة صافي (Beef Cubes Premium)', price: 460 },
-    { id: 19, name: 'مكعبات رأس عصفور (Beef Fondue)', price: 470 },
-    { id: 20, name: 'كبده صافي (Ox Liver)', price: 490 },
-    { id: 21, name: 'كبده وقلب وكلاوي (Ox Liver, Heart & Kidney)', price: 470 },
+    // Per Dish section from the menu
+    { id: 1, name: 'ممبار محشي - لحمة (Stuffed Mumbar)', price: 375 },
+    { id: 2, name: 'لحم الحواوشي المتبل (Oriental Hawawshi Meat)', price: 320 },
+    { id: 3, name: 'لحم حواوشي السجق (Hawawshi Sausages Meat)', price: 370 },
+    { id: 4, name: 'كوردون بلو - لحمة (Meat Cordon Bleu)', price: 510 },
+    { id: 5, name: 'بفتيك لحم متبل (Marinated Escalope)', price: 520 },
+    { id: 6, name: 'شاورما لحم متبلة (Marinated Shawarma)', price: 520 },
+    { id: 7, name: 'انتركوت ستيك متبل شوي (Marinated Steak - Grill)', price: 520 },
+    { id: 8, name: 'ريش شوي متبلة (Marinated Ribs - Grill)', price: 520 },
+    { id: 21, name: 'ورقة لحمة (Meat Paper)', price: 0 },
+    { id: 22, name: 'كبدة متبلة - بانيه (Marinated liver - Pane)', price: 0 },
+    { id: 23, name: 'كبدة متبلة - بالردة (Marinated liver - Fry)', price: 330 },
+    { id: 24, name: 'شيش كباب متبل (Marinated Shish)', price: 280 },
+
+    // Meat Products section
+    { id: 25, name: 'صافي (Safi)', price: 420 },
+    { id: 26, name: 'ممبار محشي - لحمة (صنف مصنعات) (Stuffed Mumbar)', price: 440 },
+    { id: 9, name: 'برجر بوتشر (Burger Butcher)', price: 420 },
+    { id: 10, name: 'تشيز برجر جامبو (Cheese Burger)', price: 440 },
+    { id: 11, name: 'سجق شرقي (Oriental Sausages)', price: 420 },
+    { id: 12, name: 'سجق لبناني (Lebanese Sausages)', price: 440 },
+    { id: 13, name: 'كفتة شوي - طرب (Kofta For Grill)', price: 420 },
+    { id: 14, name: 'كفتة داوود باشا (Kofta Dawood Basha)', price: 420 },
+    { id: 15, name: 'كاندي سويت (Candy Sweet)', price: 460 },
+    { id: 16, name: 'كفتة بانيه - لحمة (Beef Kofta - Bane)', price: 400 },
+    { id: 17, name: 'كفتة رز (Rice Kofta)', price: 360 },
+
+    // Ready to Cook section
+    { id: 18, name: 'ممبار محشي - عادي (Stuffed Mumbar - Regular)', price: 290 },
+    { id: 19, name: 'ممبار محشي - بوبس (Pops Mumbar)', price: 330 },
+    { id: 20, name: 'ممبار ضاني - محشي (Stuffed Mumbar - Lamb)', price: 0 },
+    
+    // New Products from the second menu
+    // Beef Steak section
+    { id: 27, name: 'شورت ريبس (Short Ribs)', price: 400 },
+    { id: 28, name: 'ريش شوي (Beef Ribs)', price: 420 },
+    { id: 29, name: 'سمانة ستيك (Beef Steak)', price: 460 },
+    { id: 30, name: 'ريب اي ستيك (Rib Eye Steak)', price: 460 },
+    { id: 31, name: 'انتركوت ستيك (Strip Loin Steak)', price: 460 },
+    { id: 32, name: 'توماهوك ستيك (Tomahawk Steak)', price: 480 },
+
+    // Beef Roast section
+    { id: 33, name: 'عرق فلتو (Fillet Roast)', price: 460 },
+    { id: 34, name: 'عرق روستو (Eye Round Roast)', price: 480 },
+    { id: 35, name: 'عكاوي (Oxtail)', price: 390 },
+
+    // Basic Cuts section
+    { id: 36, name: 'كباب حلة - دهن زيادة (Beef Cubes Extra Fat)', price: 400 },
+    { id: 37, name: 'لحم مفروم - دهن زيادة (Minced Beef - Extra Fat)', price: 400 },
+    { id: 38, name: 'دوش كندوز (Beef Breast)', price: 410 },
+    { id: 39, name: 'كباب خضار - دهن قليل (Beef Cubes Low Fat)', price: 420 },
+    { id: 40, name: 'شاورما (Shawarma)', price: 430 },
+    { id: 41, name: 'بفتيك/بيكاتا (Escalope/Piccata)', price: 460 },
+    { id: 42, name: 'موزة / كولاته كندوز (Minced Beef - Premium)', price: 500 },
+    { id: 43, name: 'لحم مفروم - دهن قليل (Minced Beef - Low Fat)', price: 450 },
+    { id: 44, name: 'كباب حلة - صافي (Beef Cubes Premium)', price: 450 },
+    { id: 45, name: 'مكعبات رأس عصفور (Beef fondue)', price: 460 },
+    { id: 46, name: 'كبده صافي (Ox Liver)', price: 490 },
+    { id: 47, name: 'كبده وقلب وكلاوي (Ox Liver, Heart & Kidney)', price: 470 },
 ];
 
 // Mock initial data
@@ -36,8 +74,8 @@ const initialOrders: Order[] = [
         customerName: 'أحمد محمود',
         customerPhone: '0123456789',
         customerAddress: '123 شارع المثال، القاهرة',
-        items: [{ productId: 11, name: 'لحم مفروم عادي (Minced Beef - Extra Fat)', quantity: 2, price: 400 }],
-        totalAmount: 800,
+        items: [{ productId: 11, name: 'سجق شرقي (Oriental Sausages)', quantity: 2, price: 420 }],
+        totalAmount: 840,
         status: 'Delivered',
         date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
         paymentMethod: 'Cash',
@@ -48,8 +86,8 @@ const initialOrders: Order[] = [
         customerName: 'فاطمة علي',
         customerPhone: '0109876543',
         customerAddress: '45 شارع النصر، الجيزة',
-        items: [{ productId: 14, name: 'شاورما (Shawarma)', quantity: 1.5, price: 430 }],
-        totalAmount: 645,
+        items: [{ productId: 6, name: 'شاورما لحم متبلة (Marinated Shawarma)', quantity: 1.5, price: 520 }],
+        totalAmount: 780,
         status: 'Ready',
         date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
         paymentMethod: 'InstaPay',
@@ -60,10 +98,10 @@ const initialOrders: Order[] = [
         customerPhone: '01122334455',
         customerAddress: '789 شارع الحرية، الإسكندرية',
         items: [
-            { productId: 4, name: 'ريب اي ستيك (Rib Eye Steak)', quantity: 0.5, price: 460 },
-            { productId: 18, name: 'كباب حلة صافي (Beef Cubes Premium)', quantity: 1, price: 460 }
+            { productId: 10, name: 'تشيز برجر جامبو (Cheese Burger)', quantity: 0.5, price: 440 },
+            { productId: 13, name: 'كفتة شوي - طرب (Kofta For Grill)', quantity: 1, price: 420 }
         ],
-        totalAmount: 690,
+        totalAmount: 640,
         status: 'Preparing',
         date: new Date().toISOString(),
         paymentMethod: 'Cash',
